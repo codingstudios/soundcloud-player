@@ -10,6 +10,7 @@ const html = fs.readFileSync('./index.html');
 
 const download = (video, file) => new Promise(async (resolve, reject) => {
   try {
+    console.log(`Downloading ${file}`);
     const song = await client.getSongInfo(video?.url);
     const stream = await song.downloadProgressive();
     ffmpeg(stream)
