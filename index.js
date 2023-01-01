@@ -34,7 +34,7 @@ music.forEach(async (file) => {
     const stats = fs.statSync(`./music/${file}`);
     const fileSizeInBytes = stats.size;
     const size = fileSizeInBytes / (1024*1024);
-    if(size > 1) return;
+    if(size > 10) return;
     await download(video[0], file.slice(0,-4));
   }catch(e) {console.log(e)}
 })
