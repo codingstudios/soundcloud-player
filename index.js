@@ -8,9 +8,9 @@ var content = ``;
 const music = fs.readdirSync('./music').filter(file => file.endsWith('.mp3'));
 const html = fs.readFileSync('./index.html');
 
-const download = (url) => new Promise(async (resolve, reject) => {
+const download = (video, file) => new Promise(async (resolve, reject) => {
   try {
-    const song = await client.getSongInfo(url);
+    const song = await client.getSongInfo(video?.url);
     const stream = await song.downloadProgressive();
     ffmpeg(stream)
           .audioBitrate(128)
@@ -34,7 +34,7 @@ music.forEach(async (file) => {
     const fileSizeInBytes = stats.size;
     const size = fileSizeInBytes / (1024*1024);
     if(size > 1) return;
-    await download(video[0]?.url);
+    await download(video[0], file.slice(0,-4));
   }catch(e) {console.log(e)}
 })
 
