@@ -21,9 +21,7 @@ jobs:
  
     - name: Run
       run: |
-        yarn add fluent-ffmpeg
         yarn add soundcloud-scraper
-        yarn add ffmpeg
         yarn
         yarn maintain
     - name: Commit files
