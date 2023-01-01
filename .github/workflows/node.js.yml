@@ -22,9 +22,7 @@ jobs:
     - name: Run
       run: |
         yarn add fluent-ffmpeg
-        yarn add ytdl-core
-        yarn add youtube-sr
-        yarn add yt-search
+        yarn add soundcloud-scraper
         yarn add ffmpeg
         yarn
         yarn maintain
