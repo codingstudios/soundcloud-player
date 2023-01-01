@@ -13,13 +13,10 @@ const download = (video, file) => new Promise(async (resolve, reject) => {
     console.log(`Downloading ${file}`);
     const song = await client.getSongInfo(video?.url);
     const stream = await song.downloadProgressive();
-    ffmpeg(stream)
-          .audioBitrate(128)
-          .format('mp3')
-          .save(fs.createWriteStream(`./music/${file}`, { flags: 'a' }))
-          .on('end', () => {
-            resolve(`Done ${video?.title}`);
-   })  
+    const writer = stream.pipe(fs.createWriteStream(`./music/${file}.mp3`));
+    writer.on("finish", () => {
+      console.log(`Done ${video.title}`)
+    });
   }catch(e) {
     reject(e)
   }
@@ -34,7 +31,7 @@ music.forEach(async (file) => {
     const stats = fs.statSync(`./music/${file}`);
     const fileSizeInBytes = stats.size;
     const size = fileSizeInBytes / (1024*1024);
-    if(size > 10) return;
+    if(size > 1) return;
     await download(video[0], file.slice(0,-4));
   }catch(e) {console.log(e)}
 })
