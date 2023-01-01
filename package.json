@@ -10,8 +10,6 @@
         "ffmpeg": "^0.0.4",
         "fluent-ffmpeg": "^2.1.2",
         "puppeteer": "18.2.1",
-        "youtube-sr": "^4.3.4",
-        "yt-search": "^2.10.3",
-        "ytdl-core": "^4.11.2"
+        "soundcloud-scraper": "^5.0.3"
     }
 }
